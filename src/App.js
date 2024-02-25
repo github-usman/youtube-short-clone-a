@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Video from "./component/Video";
 import localVideo from "./component/videoFiles";
+import {IoMdArrowDown,IoMdArrowUp} from "react-icons/io";
 import "./App.css";
 
 function App() {
@@ -34,6 +35,15 @@ function App() {
           />
         ))}
       </div>
+        <div className="arrows">
+      <div className='arrow' >
+          <IoMdArrowUp  className="innerArrow" />
+        </div>
+        <div className='arrow' >
+          <IoMdArrowDown className='innerArrow' />
+        </div>
+      </div>
+
     </div>
   );
 }

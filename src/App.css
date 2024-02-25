@@ -38,3 +38,39 @@ html {
     border-radius: 50%;
     /* background-color: aliceblue; */
   }
+
+
+
+ .arrows {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    height: 98%;
+
+    justify-content: space-between;
+    background-color: transparent;
+    right: 1rem;
+}
+  .arrow{
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: #504949;
+    border-radius: 50%;
+    z-index: 100;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .arrow:hover{
+    color: #504949;
+    background-color: #b3a2a2;
+  }
+.innerArrow{
+    color: #ffffff;
+    height: 2rem;
+    width: 2rem;
+    position: absolute;
+    left: 50%;
+    top: 50%; 
+    transform: translate(-50%, -50%); 
+}
