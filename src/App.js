@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Video from "./component/Video";
 import localVideo from "./component/videoFiles";
-import {IoMdArrowDown,IoMdArrowUp} from "react-icons/io";
+import { IoMdArrowDown, IoMdArrowUp } from "react-icons/io";
 import "./App.css";
 
 function App() {
   const [videos, setVideos] = useState([]);
   const [globalMuted, setGlobalMuted] = useState(false); // Global muted state
+  const containerRef = useRef(null);
 
   useEffect(() => {
     setVideos(localVideo);
@@ -16,11 +17,37 @@ function App() {
   const handleGlobalMuteToggle = () => {
     setGlobalMuted((prevGlobalMuted) => !prevGlobalMuted);
   };
+  const scrollToTop = () => {
+    if (containerRef.current) {
+      const containerHeight = containerRef.current.clientHeight;
+      const videoHeight = containerRef.current.querySelector(".video").clientHeight;
+      const videosPerContainer = Math.floor(containerHeight / videoHeight);
+      const scrollDistance = videoHeight * videosPerContainer;
+      containerRef.current.scrollTo({
+         top: containerRef.current.scrollTop - scrollDistance,
+        behavior: "smooth"
+      });
+    }
+  };
+
+  const scrollToBottom = () => {
+    if (containerRef.current) {
+      const containerHeight = containerRef.current.clientHeight;
+      const videoHeight = containerRef.current.querySelector(".video").clientHeight;
+      const videosPerContainer = Math.floor(containerHeight / videoHeight);
+      const scrollDistance = videoHeight * videosPerContainer;
+      containerRef.current.scrollTo({
+        top: containerRef.current.scrollTop + scrollDistance,
+        behavior: "smooth"
+      });
+    }
+    console.log(containerRef.current,'check')
+  };
 
   return (
     <div className="app">
       {/* Pass the globalMuted state and the function to toggle it as props */}
-      <div className="app__videos">
+      <div className="app__videos" ref={containerRef}>
         {videos.map((ele) => (
           <Video
             key={ele.id} // Don't forget to add a unique key prop when mapping
@@ -35,15 +62,14 @@ function App() {
           />
         ))}
       </div>
-        <div className="arrows">
-      <div className='arrow' >
-          <IoMdArrowUp  className="innerArrow" />
+      <div className="arrows">
+        <div className="arrow" onClick={scrollToTop}>
+          <IoMdArrowUp className="innerArrow" />
         </div>
-        <div className='arrow' >
-          <IoMdArrowDown className='innerArrow' />
+        <div className="arrow" onClick={scrollToBottom}>
+          <IoMdArrowDown className="innerArrow" />
         </div>
       </div>
-
     </div>
   );
 }
