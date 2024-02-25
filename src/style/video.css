@@ -133,6 +133,21 @@
   box-shadow: 1px 1px 10px 5px #ffffff;
 }
 
+.progress-bar-container {
+  position: absolute;
+  width: 98%;
+  right: 1%;
+  height: 3px; 
+  top:1rem;
+  background-color: #fffcfc;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #f54f25; 
+}
+
+
 @media screen and (max-width: 800px) {
   .deskTopSideIcon-mobile {
     position: absolute;

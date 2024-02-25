@@ -3,6 +3,7 @@ import "../style/video.css"
 import SideIcons from '../component/SideIcons';
 import BottomIcons from '../component/BottomIcons';
 import TopIcons from '../component/TopIcons';
+import ProgressBar from '../component/ProgressBar';
 function Videos({
     id,
     src,
@@ -15,6 +16,8 @@ function Videos({
 }) {
     const [playing, setPlaying] = useState(false);
     const videoRef = useRef(null);
+
+    // view for play/pause observer
     useEffect(() => {
         const options = {
             root: null,
@@ -72,12 +75,12 @@ function Videos({
             <div >
                 <TopIcons onGlobalMuteToggle={onGlobalMuteToggle} globalMuted={globalMuted} videoRef={videoRef} playing={playing} />
                 <div className='deskTopSideIcon-mobile'>
-
-                <SideIcons likes={likes} dislike={dislike} comment={comment} />
+                    <SideIcons likes={likes} dislike={dislike} comment={comment} />
                 </div>
                 <BottomIcons description={description} />
             </div>
-          
+            <ProgressBar videoRef={videoRef} />
+
         </div>
     );
 }
