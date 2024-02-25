@@ -1,75 +1,47 @@
 import React, { useEffect, useRef, useState } from "react";
-import Video from "./component/Video";
-import localVideo from "./component/videoFiles";
-import { IoMdArrowDown, IoMdArrowUp } from "react-icons/io";
+import Video from "./page/Video";
+import data from "./assets/data";
 import "./App.css";
+import ArrowButtons from "./component/ArrowButtons";
+import SideIcons from "./component/SideIcons";
 
 function App() {
   const [videos, setVideos] = useState([]);
-  const [globalMuted, setGlobalMuted] = useState(false); // Global muted state
+  const [globalMuted, setGlobalMuted] = useState(false);
   const containerRef = useRef(null);
 
   useEffect(() => {
-    setVideos(localVideo);
+    setVideos(data);
+    return () => {};
   }, []);
 
-  // Function to handle toggling global muted state
   const handleGlobalMuteToggle = () => {
     setGlobalMuted((prevGlobalMuted) => !prevGlobalMuted);
-  };
-  const scrollToTop = () => {
-    if (containerRef.current) {
-      const containerHeight = containerRef.current.clientHeight;
-      const videoHeight = containerRef.current.querySelector(".video").clientHeight;
-      const videosPerContainer = Math.floor(containerHeight / videoHeight);
-      const scrollDistance = videoHeight * videosPerContainer;
-      containerRef.current.scrollTo({
-         top: containerRef.current.scrollTop - scrollDistance,
-        behavior: "smooth"
-      });
-    }
-  };
-
-  const scrollToBottom = () => {
-    if (containerRef.current) {
-      const containerHeight = containerRef.current.clientHeight;
-      const videoHeight = containerRef.current.querySelector(".video").clientHeight;
-      const videosPerContainer = Math.floor(containerHeight / videoHeight);
-      const scrollDistance = videoHeight * videosPerContainer;
-      containerRef.current.scrollTo({
-        top: containerRef.current.scrollTop + scrollDistance,
-        behavior: "smooth"
-      });
-    }
-    console.log(containerRef.current,'check')
   };
 
   return (
     <div className="app">
-      {/* Pass the globalMuted state and the function to toggle it as props */}
       <div className="app__videos" ref={containerRef}>
         {videos.map((ele) => (
-          <Video
-            key={ele.id} // Don't forget to add a unique key prop when mapping
-            id={ele.id}
-            src={ele.vid}
-            likes={ele.likes}
-            dislike={ele.dislike}
-            comment={ele.comment}
-            globalMuted={globalMuted}
-            description={ele.description}
-            onGlobalMuteToggle={handleGlobalMuteToggle} // Pass function to toggle global mute state
-          />
+          <div className="main" key={ele.id}>
+            <Video
+              key={ele.id}
+              id={ele.id}
+              src={ele.vid}
+              likes={ele.likes}
+              dislike={ele.dislike}
+              comment={ele.comment}
+              description={ele.description}
+              globalMuted={globalMuted}
+              onGlobalMuteToggle={handleGlobalMuteToggle}
+            />
+            <div className='deskTopSideIcon'>
+              <SideIcons likes={ele.likes} dislike={ele.dislike} comment={ele.comment} />
+            </div>
+          </div>
         ))}
       </div>
-      <div className="arrows">
-        <div className="arrow" onClick={scrollToTop}>
-          <IoMdArrowUp className="innerArrow" />
-        </div>
-        <div className="arrow" onClick={scrollToBottom}>
-          <IoMdArrowDown className="innerArrow" />
-        </div>
-      </div>
+      <ArrowButtons containerRef={containerRef} />
     </div>
   );
 }

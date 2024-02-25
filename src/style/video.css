@@ -1,0 +1,202 @@
+.video {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  min-width: 236px;
+  height: 90vh;
+  scroll-snap-align: start;
+  margin: 5vh auto;
+  padding-top: 1rem;
+}
+
+.video__player {
+  object-fit: fill;
+  max-width: 100%;
+  min-width: 100%;
+  height: 92vh;
+  border-radius: 0.5rem;
+}
+
+.shortsVideoTop {
+  position: absolute;
+  min-width: fit-content;
+  top: 3%;
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 2.5%;
+}
+
+.shortsVideoTopIcon {
+  display: flex;
+}
+
+.shortsVideoSideIcon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem auto;
+}
+
+.shortsVideoSideIcon > p {
+  color: white;
+}
+
+.shortsBottom {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  bottom: 10px;
+}
+
+.shortsDesc {
+  display: flex;
+  padding: 10px;
+}
+
+.shortsDesc > p {
+  color: white;
+}
+
+.shortDetails {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  gap: 1rem;
+}
+
+.shortDetails > p {
+  margin-left: 10px;
+  margin-right: 10px;
+  color: white;
+  font-weight: 500;
+}
+
+.shortDetails > button {
+  padding: 7px;
+  background-color: rgba(177, 177, 177, 0.609);
+  border: none;
+  outline: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.shortDetails > button:hover {
+  background-color: rgb(255, 0, 0);
+}
+
+.shortsDesc > .ticker {
+  height: fit-content;
+  width: 100%;
+  max-width: 250px;
+}
+
+.description {
+  color: white;
+}
+
+.main {
+  display: flex;
+}
+
+.TopIcon {
+  position: relative;
+  height: 3rem;
+  width: 3rem;
+  background-color: #5e5e5e56;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.innerTopIcons {
+  color: white;
+  width: 1rem;
+  height: 1rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.deskTopSideIcon {
+  display: flex;
+  margin-left: 1rem;
+  margin-bottom: 4.3rem;
+  margin-top: auto;
+  flex-direction: column;
+  align-items: center;
+}
+.avtar{
+  border: 2px solid rgb(0, 81, 134);
+  box-shadow: 1px 1px 10px 5px #ffffff;
+}
+
+@media screen and (max-width: 800px) {
+  .deskTopSideIcon-mobile {
+    position: absolute;
+    right: 10px;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .deskTopSideIcon {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 801px) {
+  .deskTopSideIcon-mobile {
+    display: none;
+  }
+}
+
+@keyframes spinTheRecord {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (pointer: none), (pointer: coarse) {
+  .deskTopSideIcon {
+    display: none;
+  }
+  .deskTopSideIcon-mobile {
+    position: absolute;
+    right: 10px;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .video {
+    position: relative;
+    width: 1280px;
+    max-width: 100%;
+    min-width: 100%;
+    height: 100vh;
+    scroll-snap-align: start;
+    margin: 5vh auto;
+    padding-top: 1rem;
+  }
+  .video__player {
+    min-height: 100%;
+    min-width: 100%;
+    max-width: 100%;
+  }
+  .shortsBottom {
+    bottom: 6%;
+  }
+  .shortsVideoSideIcons {
+    bottom: 10%;
+  }
+  .arrow {
+    display: none;
+  }
+}

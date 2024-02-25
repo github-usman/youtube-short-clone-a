@@ -1,4 +1,4 @@
-const videos = [
+const data = [
   {
     id: 1,
     vid: "https://player.vimeo.com/progressive_redirect/playback/912266995/rendition/540p/file.mp4?loc=external&oauth2_token_id=1747418641&signature=86f5692bc2715f27f91d62d54bd9c3797d81364e3e0ea17f32b043936b90ec8b",
@@ -41,4 +41,4 @@ const videos = [
   },
 ];
 
-export default videos;
+export default data;
